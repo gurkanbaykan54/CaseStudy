@@ -34,11 +34,6 @@ export interface SelectedImage {
 export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
   const [basket, setBasket] = useState<BasketItem[]>([]);
 
-  const addToBasket = useCallback((product: Product) => {
-    setBasket((prev) => [...prev, { product, quantity: 1 }]);
-  }, []);
-
-
 
   const getTotalPrice = useCallback(() => {
     return basket.reduce((total, item) => total + (item.product.price * item.quantity), 0);
@@ -53,7 +48,6 @@ export const AppProvider: React.FC<AppProviderProps> = ({ children }) => {
     basket,
     getTotalPrice,
     getTotalItems,
-    addToBasket,
   }), [basket, getTotalPrice, getTotalItems]);
 
   return (
